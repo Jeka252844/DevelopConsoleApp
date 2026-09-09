@@ -1,6 +1,6 @@
 import sys
 import argparse
-import traceback
+import math
 
 MAX_VALUE = 10_000
 MIN_VALUE = -10_000
@@ -15,7 +15,7 @@ def main():
 
                 return solve(a, b, c)
             except ValueError as e:
-                traceback.print_exc(file=sys.stderr)
+                print(e, file=sys.stderr)
                 return 1
         else:
             try:
@@ -30,11 +30,12 @@ def main():
 
 def get_command():
     parser = argparse.ArgumentParser(
-        description='Программа для решения уравнений вида a*x**2 + b*x + c = 0',
-        epilog='Пример: "python mathtool.py solve -a 3 -b 2 -c -12"'
+        description=('Программа для решения уравнений вида a*x^2 + b*x + c = 0\n' \
+        'Коэффициенты A, B, C — целые числа, по модулю не превышающие 10000.'),
+        epilog='Пример использовани: "python mathtool.py solve -a 3 -b 2 -c -12"'
     )
     subparsers = parser.add_subparsers(dest='command', help='Доступные команды')
-    solve_parser = subparsers.add_parser('solve', help='Решать')
+    solve_parser = subparsers.add_parser('solve', help='Решать уравнение')
 
     solve_parser.add_argument('-a', default=None, help='Число a')
     solve_parser.add_argument('-b', default=None, help='Число b')
@@ -97,8 +98,8 @@ def solve(a, b, c):
             print(f" D = 0 \n x = {x:.2f}")
             return 0
         else:
-            x1 = (-b + D**(1/2)) / (2*a)
-            x2 = (-b - D**(1/2)) / (2*a)
+            x1 = (-b + math.sqrt(D)) / (2*a)
+            x2 = (-b - math.sqrt(D)) / (2*a)
             print(f" D = {D} > 0 \n x1 = {x1:.3f} \n x2 = {x2:.3f}")
 
     
