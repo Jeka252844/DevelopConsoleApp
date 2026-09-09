@@ -84,25 +84,23 @@ def solve(a, b, c):
     if a==0 and b==0:
         raise ValueError("Ошика: a и b равны нулю. Не уравнение")
     elif a == 0:
-        print("Линейное уравнение\n")
         x = -c / b
-        print(f"x = {x:.3f}")
-        return 0
+        print(f"Линейное уравнение; x = {x:.3f}")
+        sys.exit(0)
     else:
-        print("Квадратное уравнение\n")
-
         D = b**2 - (4 * a * c)
         if D < 0:
-            print(f" D = {D} < 0 \n Действительных корней нет")
-            return 0
+            print(f"Квадратное уравнение; D = {D}; Действительных корней нет")
+            sys.exit(0)
         elif D == 0:
             x = -b / (2*a)
-            print(f" D = 0 \n x = {x:.2f}")
-            return 0
+            print(f"Квадратное уравнение; D = 0; x = {x:.2f}")
+            sys.exit(0)
         else:
             x1 = (-b + math.sqrt(D)) / (2*a)
             x2 = (-b - math.sqrt(D)) / (2*a)
-            print(f" D = {D} > 0 \n x1 = {x1:.3f} \n x2 = {x2:.3f}")
+            print(f"Квадратное уравнение; D = {D} > 0; x1 = {x1:.3f}, x2 = {x2:.3f}")
+            sys.exit(0)
 
     
 
