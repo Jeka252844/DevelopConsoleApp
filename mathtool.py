@@ -2,11 +2,12 @@ import sys
 import argparse
 import math
 
+# Глобальные перменнные
 MAX_VALUE = 10_000
 MIN_VALUE = -10_000
 
 def main():
-    parser, args = get_command()
+    parser, args = get_command()# Получение парсера и аргументов
 
     if args.command == 'solve':
         if args.a is not None and args.b is not None and args.c is not None:
@@ -16,15 +17,15 @@ def main():
                 return solve(a, b, c)
             except ValueError as e:
                 print(e, file=sys.stderr)
-                return 1
+                sys.exit(1)
         else:
             try:
                 a, b, c = get_input_data(args.a, args.b, args.c)
 
                 return solve(a, b, c)
             except ValueError as e:
-                print(e, )
-                return 1
+                print(e, file=sys.stderr)
+                sys.exit(1)
     else:
         parser.print_help()
 
@@ -34,13 +35,14 @@ def get_command():
         'Коэффициенты A, B, C — целые числа, по модулю не превышающие 10000.'),
         epilog='Пример использовани: "python mathtool.py solve -a 3 -b 2 -c -12"'
     )
+    # Добавление команды парсеру
     subparsers = parser.add_subparsers(dest='command', help='Доступные команды')
     solve_parser = subparsers.add_parser('solve', help='Решать уравнение')
-
+    # добавление аргументов к команде
     solve_parser.add_argument('-a', default=None, help='Число a')
     solve_parser.add_argument('-b', default=None, help='Число b')
     solve_parser.add_argument('-c', default=None, help='Число c')
-
+    # Получение аргументов из запроса 
     args = parser.parse_args()
     return parser, args 
 
@@ -52,7 +54,7 @@ def validator(a, b, c):
     except:
         raise ValueError("Ошибка: надо ввести ЦЕЛЫЕ числа(1, -8, 12, 4)")
 
-    if min([a, b, c]) < -MIN_VALUE or max([a, b, c]) > MAX_VALUE:
+    if min([a, b, c]) < MIN_VALUE or max([a, b, c]) > MAX_VALUE:
         raise ValueError(f"ОШИБКА: числа не должны быть меньше {MIN_VALUE} или превышать {MAX_VALUE}")
 
     print(f"Введены a = {a}, b = {b}, c = {c}\n")
