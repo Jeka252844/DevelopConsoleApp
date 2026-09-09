@@ -10,11 +10,27 @@
 9   None None None Требует все через input
 10  None 5  7   Требует аргумент а через input
 11  5.5  7  6   Выводит ошибку про целые числа
-12  5,5  7  7   Выводит ошибку про цулые числа
 
-13  --help      Выводит справку
-14  -h          Выводит справку
-15 Ничего       Выводит справку
-16 --asdfas     Выводит ошибку; code 1
-17 лишние аргументы   Игнорирует
+12  --help      Выводит справку
+13  -h          Выводит справку
+14 Ничего       Выводит справку
+15 --asdfas     Игнорирует, вызывает предупреждение и справку
+16 лишние аргументы   Игнорирует, вызывает предупреждение, продолжает работу
 
+№              код                                   результат:
+1)  python mathtool.py solve -a 1 -b -3 -c 2    |   Квадратное уравнение; D = 1 > 0; x1 = 2.000, x2 = 1.000
+2)  python mathtool.py solve -a 1 -b -2 -c 1    |   Квадратное уравнение; D = 0; x = 1.00
+3)  python mathtool.py solve -a 1 -b 0  -c 5    |   Квадратное уравнение; D = -20; Действительных корней нет
+4)  python mathtool.py solve -a 0 -b 2  -c -4   |   Линейное уравнение; x = 2.000
+5)  python mathtool.py solve -a 0 -b 0  -c 0    |   Ошика: a и b равны нулю. Не уравнение
+6)  python mathtool.py solve -a 0 -b 0  -c 7    |   Ошика: a и b равны нулю. Не уравнение
+7)  python mathtool.py solve -a a -b 1  -c 1    |   Ошибка: надо ввести ЦЕЛЫЕ числа(1, -8, 12, 4)
+8)  python mathtool.py solve -a 50000 -b 3 -c 2 |   ОШИБКА: числа не должны быть меньше -10000 или превышать 10000
+9)  python mathtool.py solve                    |   ok
+10) python mathtool.py solve      -b -3 -c 2    |   ok
+11) python mathtool.py solve -a 5.5 -b 3 -c 2   |   Ошибка: надо ввести ЦЕЛЫЕ числа(1, -8, 12, 4)
+12) python mathtool.py --help                   |   ok
+13) python mathtool.py  -h                      |   ok
+14) python mathtool.py                          |   ok
+15) python mathtool.py --sdfssd                 |   ok
+16) python mathtool.py solve -a 5 -b 3 -c 2 -d 7|   ok

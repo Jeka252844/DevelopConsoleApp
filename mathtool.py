@@ -43,7 +43,9 @@ def get_command():
     solve_parser.add_argument('-b', default=None, help='Число b')
     solve_parser.add_argument('-c', default=None, help='Число c')
     # Получение аргументов из запроса 
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
+    if unknown:
+        print(f'Предупреждение: неизвесные аргументы {unknown}')
     return parser, args 
 
 def validator(a, b, c):
