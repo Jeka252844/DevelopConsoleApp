@@ -25,9 +25,7 @@ def validator(cnt:int, values:dict):
     names = ARGS_LIST[0:cnt]
     nums = {}
 
-    for name in names:
-        arg_err = name
-        
+    for name in names:        
         if values[name] is not None:
             nums[name] = values[name]
         else:   
@@ -35,7 +33,7 @@ def validator(cnt:int, values:dict):
                 nums[name] = int(input(f'введите целое число {name}'))
             except ValueError:
                 raise ValueError(
-                    f"Ошибка папаметра {arg_err}: надо ввести ЦЕЛЫЕ числа от {MIN_VALUE} до {MAX_VALUE}"
+                    f"Ошибка папаметра {name}: надо ввести ЦЕЛЫЕ числа от {MIN_VALUE} до {MAX_VALUE}"
                 )
 
     if min(list(nums.values())) < MIN_VALUE or max(list(nums.values())) > MAX_VALUE:
