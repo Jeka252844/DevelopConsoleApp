@@ -15,7 +15,7 @@ def main():
         print_help()
         return 0
 
-    command, rest = sys.argv[0], sys.argv[1:]
+    command, rest = argv[0], argv[1:]
 
     if command not in HANDLERS:
         print(f"ОШИБКА: yеизвестная команда {command}", file=sys.stderr)

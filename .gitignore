@@ -1,3 +1,4 @@
 /что-тоНеНужное.txt
 settings.json
 .vscode/
+__pycache__/

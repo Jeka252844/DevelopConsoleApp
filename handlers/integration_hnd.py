@@ -3,7 +3,7 @@ import math
 from solve.integration import FORMULS
 
 ARGS_LIST = ['a', 'b', 'c', 'd', 'e']
-MAX_STEPS = 500
+MAX_STEPS = 10000
 
 def integrate_parser():
     p = argparse.ArgumentParser(
@@ -13,8 +13,8 @@ def integrate_parser():
         allow_abbrev=False,
     )
     p.add_argument("--func", required=True, choices=sorted(FORMULS), help="Функция интеграла")
-    p.add_argument('--from', required=True, dest='start', type=int, help='число начала')
-    p.add_argument('--to', required=True, dest="end", type=int, help='число конца')
+    p.add_argument('--from', required=True, dest='start', type=float, help='число начала')
+    p.add_argument('--to', required=True, dest="end", type=float, help='число конца')
     p.add_argument('--steps', default=1, type=int, help='шаг интегрирования')
 
     return p 
