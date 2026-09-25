@@ -14,7 +14,7 @@ def solve_quadratic(args: dict):
             return ["Квадратное уровнение", f"D = {str(D)}", "Действительных корней нет"]
         elif D == 0:
             x = -b / (2*a)
-            return ["Квадратное уравнение", "D = 0", "x = {x:.3f}"]
+            return ["Квадратное уравнение", "D = 0", f"x = {x:.3f}"]
         else:
             x1 = (-b + math.sqrt(D)) / (2*a)
             x2 = (-b - math.sqrt(D)) / (2*a)
