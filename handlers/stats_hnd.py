@@ -28,14 +28,20 @@ def handle_stats(args):
         print("Конец ввода: Ctrl+Z + Enter (Windows) или Ctrl+D (Linux)", file=sys.stderr)
         return validator(read(sys.stdin))
 
+# def read_alt(source):
+    # for
+
 def read(source):
     nums = []
     for line in source:
-        for word in line.split():
+        for num in line.split(): 
+            if num == "'":
+                break
             try:
-                nums.append(float(word))
+                nums.append(float(num))
             except ValueError:
-                raise ValueError(f'Ряд должен состоять только из чисел.{word} - Не число')
+                raise ValueError(f'Ряд должен состоять только из чисел.{num} - Не число')
+        break
 
     return nums
 

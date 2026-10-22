@@ -2,7 +2,7 @@ import argparse
 from solve.series import FORMULAS
 
 ARGS_LIST = ['a', 'b', 'c', 'd', 'e']
-MIN_VALUE = -10000
+MIN_VALUE = -80000
 MAX_VALUE = 10000
 
 def series_parser():

@@ -1,6 +1,7 @@
 import math
 
 def total(args):
+    """Сумма"""
     # return sum(args)
     res = 0
     for a in args:
@@ -8,15 +9,18 @@ def total(args):
     return res
 
 def mean(args):
+    """Среднее"""
     return total(args) / len(args)
 
 def sum_squares(values):
+    """Cумма квадратов"""
     result = 0
     for v in values:
         result += v ** 2
     return result
 
 def rms(values):
+    """Среднее квадратов"""
     return math.sqrt(sum_squares(values) / len(values))
 
 
@@ -30,12 +34,15 @@ def sum_sq_deviations(values):
     return result
 
 def variance(values):
+    '''Дисперсия'''
     return sum_sq_deviations(values) / len(values)
 
 def std_dev(values):
+    """СКО"""
     return math.sqrt(variance(values))
 
 def sample_std(values):
+    """Станд. откл."""
     if len(values) < 2:
         return None
     return math.sqrt(sum_sq_deviations(values) / (len(values) - 1))
@@ -43,6 +50,7 @@ def sample_std(values):
 # -----экстремумы---------
 
 def minimum(values):
+    """Минимум"""
     result = values[0]
     for v in values:
         if v < result:
@@ -50,6 +58,7 @@ def minimum(values):
     return result
 
 def maximum(values):
+    """Максимум"""
     res = values[0]
     for v in values:
         if v > res:
@@ -59,6 +68,7 @@ def maximum(values):
 # ------подсчёты----
 
 def count_positive(values):
+    """Колличество положительных"""
     res = 0
     for v in values:
         if v > 0:
@@ -66,6 +76,7 @@ def count_positive(values):
     return res
 
 def count_negative(values):
+    """Колличество отрицательных"""
     res = 0
     for v in values:
         if v < 0:
@@ -89,6 +100,7 @@ REPORT = [
 ]
 
 def solve_stats(args):
+    """Решение"""
     lines = []
     for name, func ,cl in REPORT:
         value = func(args)

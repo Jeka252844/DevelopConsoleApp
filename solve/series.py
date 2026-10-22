@@ -2,7 +2,7 @@ import math
 
 MAX_TERMS = 10_000
 MAX_EPS = 0.0001
-MAX_ITERATIONS = 100_000
+MAX_ITERATIONS = 100_0000
 DIGITS = 4
 
 def sign(n):
