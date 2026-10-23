@@ -1,10 +1,7 @@
-import sys, argparse
-import math
+import sys
 
 from handlers import HANDLERS
 from solve import SOLVES
-from solve import equations, integration, series, stats
-from handlers import equations_hnd, integration_hnd, series_hnd, stats_hnd
 from usage import print_help
 
 

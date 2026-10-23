@@ -58,3 +58,33 @@ python mathtool.py integrate --func ratio --from 0 --to 20 --steps 0      # 54: 
 python mathtool.py integrate --func nosuch --from 0 --to 20 --steps 100  # 55: invalid choice, код 2
 python mathtool.py integrate --func ratio --from 0 --to 20                # 56: требуется --steps, код 2
 python mathtool.py integrate --help                                       # 57: справка по команде (код 0)
+
+
+python mathtool.py fill -c 5 --seed 42                # 58: 63 -72 -94 89 -30 (код 0)
+python mathtool.py fill -c 5 --seed 42 -o small.txt   # 59: Записано элементов: 5 в файл small.txt (код 0)
+python mathtool.py fill -c 0                          # 60: Ошибка: ОШИБКА: количество элементов вне диапазона 1..1000000 (код 1)
+python mathtool.py fill -c 5 --min 10 --max -10       # 61: Ошибка: ОШИБКА: min не может быть больше max (код 1)
+python mathtool.py fill -c 5 --min -150               # 62: Ошибка: ОШИБКА: границы должны быть в диапазоне -100..100 (код 1)
+
+python mathtool.py sort -m bubble -i example.txt                  # 63: -76 -5 24 43 81; Массив отсортирован. (код 0)
+python mathtool.py sort -m bubble -i example.txt --order desc     # 64: 81 43 24 -5 -76; Массив отсортирован. (код 0)
+python mathtool.py sort -m selection -i example.txt -o example_sorted.txt # 65: Записано элементов: 5 в файл example_sorted.txt; Массив отсортирован. (код 0)
+python mathtool.py sort -m insertion -i example.txt               # 66: -76 -5 24 43 81; Массив отсортирован. (код 0)
+python mathtool.py sort -m counting -i example.txt --order desc   # 67: 81 43 24 -5 -76; Массив отсортирован. (код 0)
+
+echo "5 4 3 2 1" | python mathtool.py sort -m bubble               # 68: 1 2 3 4 5; Массив отсортирован. (Обратный порядок)
+echo "1 2 3 4 5" | python mathtool.py sort -m counting --order desc # 69: 5 4 3 2 1; Массив отсортирован. (Готовый порядок)
+echo "5 1 5 1 5" | python mathtool.py sort -m selection            # 70: 1 1 5 5 5; Массив отсортирован. (Повторы)
+echo "7" | python mathtool.py sort -m insertion                    # 71: 7; Массив отсортирован. (Один элемент)
+
+# Ошибки при сортировке
+python mathtool.py sort -m bubble -i nosuch.txt                    # 72: Ошибка файла (FileNotFoundError) (код 2)
+
+python mathtool.py search -v 43 -i example_sorted.txt             # 73: Значение 43 имеет элемент с индексом 4. (код 0)
+python mathtool.py search -v 15 -i example_sorted.txt             # 74: Ошибка: Значение 15 не найдено. (код 1)
+python mathtool.py search -v 43 -i unsorted.txt                   # 75: Ошибка: ОШИБКА: массив не упорядочен по возрастанию (код 1)
+python mathtool.py search -v 5000 -i example_sorted.txt           # 76: Ошибка: ОШИБКА: модуль значения не должен превышать 1000 (код 1)
+
+python mathtool.py fill -c 1000 --seed 1 -o size1000.txt          # 77: Записано элементов: 1000 в файл size1000.txt
+python mathtool.py fill -c 3000 --seed 1 -o size3000.txt          # 78: Записано элементов: 3000 в файл size3000.txt
+python mathtool.py fill -c 10000 --seed 1 -o size10000.txt        # 79: Записано элементов: 10000 в файл size10000.txt
