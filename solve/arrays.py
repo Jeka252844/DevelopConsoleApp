@@ -24,8 +24,7 @@ def read_array(path=None):
                 break
         text = " ".join(lines)
     
-    text = text.replace(",", " ")
-    words = text.split()
+    words = text.split(" ")
     
     try:
         values = [int(w) for w in words]

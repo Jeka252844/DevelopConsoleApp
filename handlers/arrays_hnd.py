@@ -1,5 +1,4 @@
 import argparse
-import sys
 from solve.arrays import MIN_VALUE, MAX_VALUE, MAX_COUNT, MAX_SEARCH
 from solve.sorting import METHODS
 

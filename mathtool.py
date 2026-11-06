@@ -18,7 +18,7 @@ def main():
         print(f"ОШИБКА: неизвестная команда {command}", file=sys.stderr)
         print_help()
         return 2
-        
+
     build_parser, handler = HANDLERS[command]
     solve = SOLVES[command]
 
