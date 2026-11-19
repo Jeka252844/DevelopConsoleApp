@@ -88,3 +88,34 @@ python mathtool.py search -v 5000 -i example_sorted.txt           # 76: Ошиб
 python mathtool.py fill -c 1000 --seed 1 -o size1000.txt          # 77: Записано элементов: 1000 в файл size1000.txt
 python mathtool.py fill -c 3000 --seed 1 -o size3000.txt          # 78: Записано элементов: 3000 в файл size3000.txt
 python mathtool.py fill -c 10000 --seed 1 -o size10000.txt        # 79: Записано элементов: 10000 в файл size10000.txt
+
+#  quick / merge / heap
+python mathtool.py sort -m quick  -i example.txt                  # 80: -76 -5 24 43 81; Массив отсортирован. (код 0)
+python mathtool.py sort -m quick  -i example.txt --order desc     # 81: 81 43 24 -5 -76; Массив отсортирован. (код 0)
+python mathtool.py sort -m merge  -i example.txt                  # 82: -76 -5 24 43 81; Массив отсортирован. (код 0)
+python mathtool.py sort -m merge  -i example.txt --order desc     # 83: 81 43 24 -5 -76; Массив отсортирован. (код 0)
+python mathtool.py sort -m heap   -i example.txt                  # 84: -76 -5 24 43 81; Массив отсортирован. (код 0)
+python mathtool.py sort -m heap   -i example.txt --order desc     # 85: 81 43 24 -5 -76; Массив отсортирован. (код 0)
+
+#  quick / merge / heap
+echo "5 4 3 2 1" | python mathtool.py sort -m quick               # 86: 1 2 3 4 5; (Обратный порядок) (код 0)
+echo "1 2 3 4 5" | python mathtool.py sort -m merge               # 87: 1 2 3 4 5; (Готовый порядок) (код 0)
+echo "5 1 5 1 5" | python mathtool.py sort -m heap                # 88: 1 1 5 5 5; (Повторы) (код 0)
+echo "7"         | python mathtool.py sort -m quick               # 89: 7; (Один элемент) (код 0)
+echo "7"         | python mathtool.py sort -m merge               # 90: 7; (Один элемент) (код 0)
+echo "7"         | python mathtool.py sort -m heap                # 91: 7; (Один элемент) (код 0)
+echo "2 1"       | python mathtool.py sort -m heap --order desc   # 92: 1 2 → затем убыв.: 2 1; (Два элемента) (код 0)
+
+#  quick / merge / heap
+python mathtool.py fill -c 1 --seed 7 -o size1.txt                # 93: Записано элементов: 1 в файл size1.txt
+python mathtool.py sort -m heap -i size1.txt                      # 94: <одно число>; Массив отсортирован. (код 0)
+python mathtool.py sort -m quick -i size10000.txt                 # 95: 10000 чисел; Время операции sort (quick): ~0.017 с
+python mathtool.py sort -m merge -i size10000.txt                 # 96: 10000 чисел; Время операции sort (merge): ~0.028 с
+python mathtool.py sort -m heap  -i size10000.txt                 # 97: 10000 чисел; Время операции sort (heap):  ~0.033 с
+
+#  Проверка сортировки по возрастанию после сортировки
+# (сортировка уже отсортированного массива — должна дать тот же результат)
+python mathtool.py sort -m quick -i example.txt -o ex_asc.txt               # 98
+python mathtool.py sort -m quick -i ex_asc.txt                  # 99: тот же вывод, ещё раз (код 0)
+python mathtool.py search -v -76 -i ex_asc.txt                  # 100: Значение -76 имеет элемент с индексом 1 (код 0)
+
