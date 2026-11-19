@@ -51,8 +51,35 @@ def handle_search(args):
         raise ValueError(f"ОШИБКА: модуль значения не должен превышать {MAX_SEARCH}")
     return {"value": args.value, "input": args.input}
 
+def select_parser():
+    p = argparse.ArgumentParser(prog="mathtool select", allow_abbrev=False)
+    p.add_argument("-k", "--rank", type=int, required=True,
+                   help="номер статистики (с 1)")
+    p.add_argument("-i", "--input", help="входной файл")
+    p.add_argument("--seed", type=int, help="зерно генератора")
+    return p
+
+
+def handle_select(args):
+    return {"rank": args.rank, "input": args.input, "seed": args.seed}
+
+
+def shuffle_parser():
+    p = argparse.ArgumentParser(prog="mathtool shuffle", allow_abbrev=False)
+    p.add_argument("-i", "--input", help="входной файл")
+    p.add_argument("--seed", type=int, help="зерно генератора")
+    p.add_argument("-o", "--output", help="выходной файл")
+    return p
+
+
+def handle_shuffle(args):
+    return {"input": args.input, "seed": args.seed, "output": args.output}
+
+
 HANDLERS = {
     "fill": (fill_parser, handle_fill),
     "sort": (sort_parser, handle_sort),
     "search": (search_parser, handle_search),
+    "select": (select_parser, handle_select),
+    "shuffle": (shuffle_parser, handle_shuffle),
 }
