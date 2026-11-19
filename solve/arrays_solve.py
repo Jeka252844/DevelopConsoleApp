@@ -1,6 +1,7 @@
 import sys
 import time
-from solve.arrays import read_array, write_array, fill_array, binary_search
+from solve.selection import statistic
+from solve.arrays import read_array, write_array, fill_array, binary_search, shuffle
 from solve.sorting import METHODS
 
 def solve_fill(args):
@@ -42,8 +43,22 @@ def solve_search(args):
     
     return [f"Значение {args['value']} имеет элемент с индексом {index + 1}."]
 
+def solve_select(args):
+    arr = read_array(args['input'])
+    value = statistic(arr, args['rank'], args['seed'])
+    return [f"Значение порядковой статистики: {value}"]
+
+
+def solve_shuffle(args):
+    arr = read_array(args['input'])
+    shuffle(arr, args['seed'])
+    result = write_array(arr, args['output'])
+    return [result, "Массив перемешан"]
+
 COMMANDS = {
     "fill": solve_fill,
     "sort": solve_sort,
-    "search": solve_search
+    "search": solve_search,
+    "select": solve_select,
+    "shuffle": solve_shuffle,
 }

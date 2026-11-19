@@ -46,5 +46,17 @@ def print_help():
         search      поиск в массиве
             -v, --value N   искомое значение (|N| ≤ 1000000)
             -i, --input FILE    входной файл (по умолчанию stdin)
-            пример: python mathtool.py search -v 42 -i input.txt'''
+            пример: python mathtool.py search -v 42 -i input.txt
+
+        select      k-я порядковая статистика (без полной сортировки)
+            -k, --rank N    номер статистики (1..len)
+            -i, --input FILE    входной файл (по умолчанию stdin)
+            --seed S        зерно генератора
+            пример: python mathtool.py select -k 4 -i selection.txt --seed 1
+
+        shuffle     перемешивание Фишера–Йетса
+            -i, --input FILE    входной файл (по умолчанию stdin)
+            --seed S        зерно генератора
+            -o, --output FILE   выходной файл (по умолчанию stdout)
+            пример: python mathtool.py shuffle -i selection.txt --seed 1 -o shuffled.txt'''
     )
