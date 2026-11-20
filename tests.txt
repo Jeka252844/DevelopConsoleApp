@@ -119,3 +119,19 @@ python mathtool.py sort -m quick -i example.txt -o ex_asc.txt               # 98
 python mathtool.py sort -m quick -i ex_asc.txt                  # 99: тот же вывод, ещё раз (код 0)
 python mathtool.py search -v -76 -i ex_asc.txt                  # 100: Значение -76 имеет элемент с индексом 1 (код 0)
 
+# select
+python mathtool.py select -k 4 -i selection.txt --seed 1        # Значение порядковой статистики: 35; код 0
+python mathtool.py select -k 1 -i selection.txt --seed 1        # Значение порядковой статистики: 11; код 0
+python mathtool.py select -k 9 -i selection.txt --seed 1        # Значение порядковой статистики: 87; код 0
+python mathtool.py select -k 0 -i selection.txt                 # Ошибка: k вне диапазона 1..9; код 1
+python mathtool.py select -k 10 -i selection.txt                # Ошибка: k вне диапазона 1..9; код 1
+python mathtool.py select -k abc -i selection.txt               # argparse; код 2
+python mathtool.py select -k 4 -i nosuch.txt                    # ошибка чтения файла; код 1
+echo "5 2 2 9" | python mathtool.py select -k 2 --seed 1        # Значение порядковой статистики: 2; код 0
+
+# shuffle
+python mathtool.py shuffle -i selection.txt --seed 1 -o shuffled.txt   # Записано элементов: 9 в файл shuffled.txt; Массив перемешан; код 0
+python mathtool.py shuffle -i selection.txt --seed 1 -o shuffled2.txt  # то же содержимое, что в shuffled.txt
+cmp shuffled.txt shuffled2.txt                                   # файлы совпадают
+python mathtool.py shuffle -i selection.txt --seed 1                   # числа на экран; Массив перемешан; код 0
+python mathtool.py shuffle -i nosuch.txt --seed 1                      # ошибка чтения; код 1

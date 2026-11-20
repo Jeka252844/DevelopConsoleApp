@@ -51,7 +51,6 @@ def counting_sort(arr, descending=False):
             arr[k] = idx + MIN_VALUE
             k += 1
 
-
 def quick_sort(arr, descending=False):
     stack = [(0, len(arr) - 1)]
     while stack:
@@ -73,7 +72,6 @@ def quick_sort(arr, descending=False):
             stack.append((lo, j))
         if i < hi:
             stack.append((i, hi))
-
 
 def merge_sort(arr, descending=False):
     n = len(arr)
