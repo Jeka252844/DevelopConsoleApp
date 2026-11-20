@@ -73,7 +73,6 @@ def quick_sort(arr, descending=False):
             stack.append((lo, j))
         if i < hi:
             stack.append((i, hi))
-    return arr
 
 
 def merge_sort(arr, descending=False):
@@ -98,7 +97,6 @@ def merge_sort(arr, descending=False):
             while j < len(right):
                 arr[k] = right[j]; j += 1; k += 1
         width *= 2
-    return arr
 
 def heap_sort(arr, descending=False):
     n = len(arr)
@@ -133,8 +131,6 @@ def heap_sort(arr, descending=False):
                 break
             arr[root], arr[swap] = arr[swap], arr[root]
             root = swap
-
-    return arr
 
 METHODS = {
     "bubble": bubble_sort,
